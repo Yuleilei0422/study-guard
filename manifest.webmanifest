@@ -1,0 +1,17 @@
+{
+  "name": "守時 · 考研時間安排器",
+  "short_name": "守時",
+  "description": "在答應新行程前，先看它對考研目標的時間代價。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f2f0e9",
+  "theme_color": "#153c32",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
