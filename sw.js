@@ -1,5 +1,6 @@
-const CACHE_NAME = 'study-guard-v3'
-const SCOPE_PATH = new URL(self.registration.scope).pathname
+const CACHE_NAME = 'study-guard-v4'
+const SCOPE_URL = new URL(self.registration.scope)
+const SCOPE_PATH = SCOPE_URL.pathname
 const BASE_PATH = SCOPE_PATH.endsWith('/') ? SCOPE_PATH : `${SCOPE_PATH}/`
 const APP_SHELL = [
   BASE_PATH,
@@ -24,6 +25,14 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return
+
+  const requestUrl = new URL(event.request.url)
+  if (
+    requestUrl.origin === SCOPE_URL.origin
+    && requestUrl.pathname.startsWith(`${BASE_PATH}ai-models/`)
+  ) {
+    return
+  }
 
   if (event.request.mode === 'navigate') {
     event.respondWith(
